@@ -1,8 +1,6 @@
 const app = require('./server.js');
-require('dotenv').config();
+require('./models/index');
 
-async function main (){
-    await app.listen(app.get(process.env.PORT || 'port'));
+app.listen(app.get('port'), () =>{
     console.log('Server listen on port:', app.get('port'));
-}
-main();
+});
