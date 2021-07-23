@@ -1,4 +1,4 @@
-<h1>Microservicios</h1>
+<h1>Contenedores</h1>
 
 <div class="row">
     {{#each servicios}}
@@ -13,7 +13,8 @@
                     <p>{{discover}}</p>
                     <p>{{code}}</p>
                     <p>{{team}}</p>
-                    <form action="/microservicios/delete/{{_id}}" method="POST">
+                    <form action="/microservicios/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-outline-danger btn-block btn-sm">
                             Eliminar
                         </button>
