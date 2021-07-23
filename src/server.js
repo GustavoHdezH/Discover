@@ -4,6 +4,7 @@ const app = express();
 const path = require('path'); 
 const exphbs = require('express-handlebars');
 const morgan = require('morgan');
+const methodOverrie = require('method-override');
 // Settings
 app.set('port', process.env.PORT || 4000);
 app.set('views',path.join(__dirname, 'views'));
@@ -16,8 +17,10 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('json spaces', 2);
 //Middlewares
-app.use(express.urlencoded({extended: false}));
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(methodOverrie('_method'));
+
 // Global variables
 // Routes
 app.use(require('./routes/index.routes'));
