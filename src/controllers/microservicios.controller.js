@@ -4,7 +4,6 @@ const Servicios = require('../models/servicios');
 
 // Renderizar el formulario
 controllermicroservicios.renderMicroserviciosForm = (req, res) =>{
-    //res.send('microservicio agregado');
     res.render('microservicios/new-microservicio');
 };
 //Crear microservicio
@@ -18,7 +17,7 @@ controllermicroservicios.createMicroservicios = async (req, res) =>{
     //Se guarda el objeto en la colleccion
     await newServicios.save();
     console.log(newServicios)
-    res.send('Nuevo microservicio');
+    res.redirect('/microservicios/add');
 };
 // Renderizar microservicios
 controllermicroservicios.renderMicroservicios = async (req, res) =>{
@@ -29,18 +28,24 @@ controllermicroservicios.renderMicroservicios = async (req, res) =>{
     res.render('microservicios/all-microservicios', { servicios });
     
 };
-
 // Editar microservicios
-controllermicroservicios.renderEditMicroserviciosForm = (req,res) => {
-    res.send('formulario para editar microservicio')
+controllermicroservicios.renderEditMicroserviciosForm = async (req,res) => {
+    //Se añade propiedad .lean() para renderizar el objeto
+    const servicios = await Servicios.findById(req.params.id).lean();
+    res.render('microservicios/edit-microservicios', {servicios});
 };
-controllermicroservicios.updateMicroservicios = (req,res) => {
-    res.send('Se actualizo el microservicio');
+controllermicroservicios.updateMicroservicios = async (req, res) => {
+    const {container, port, server, discover, code, team} = req.body;
+    await Servicios.findByIdAndUpdate(req.params.id, { container,port, server, discover, code, team});
+    res.redirect('/microservicios');
 };
 
 // eliminar microservicios
-controllermicroservicios.deleteMicroservicios = (req,res) => {
-    res.send('microservicio eliminado');
+controllermicroservicios.deleteMicroservicios = async (req,res) => {
+    //console.log(req.params.id)
+    await Servicios.findByIdAndDelete(req.params.id);
+    //res.send('microservicio eliminado');
+    res.redirect('/microservicios')
 };
 
 module.exports = controllermicroservicios;
