@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row align-items-center justify-content-center vh-100">
+        <div class="col-md-7 ">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/microservicios/edit-microservicios/{{servicios._id}}?_method=PUT" method="POST" class="needs-validation" novalidate >
+                        <input type="hidden" name="_method" value="PUT">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="">Container</label>
+                                <input type="text" name="container" class="form-control" value="{{servicios.container}}">
+                                <div class="invalid-feedback">
+                                    Please the form not empy
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Port</label>
+                                <input type="text" name="port" class="form-control" value="{{servicios.port}}">
+                                <div class="invalid-feedback">
+                                    Please choose a port number valid
+                                </div>
+                            </div>
+                        </div>
+                        <!---form-row-->
+                        <div class="form-row align-items-center">
+                            <div class="form-group col-md-6">
+                                <label for="">Server</label>
+                                <input type="text" name="server" class="form-control" value="{{servicios.server}}">
+                                <div class="invalid-feedback">
+                                    Please choose a server
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Discover</label>
+                                <input type="text" name="discover" class="form-control" value="{{servicios.discover}}">
+                                <div class="invalid-feedback">
+                                    Please write a discover name valid
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="">Source Code</label>
+                            <input type="url" name="code" class="form-control" pattern="https?://.+" size="80" required
+                                autocomplete="off" value="{{servicios.code}}">
+                            <div class="invalid-feedback">
+                                Please write a URI
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Team</label>
+                            <input type="text" name="team" class="form-control" required autocomplete="off" value="{{servicios.team}}">
+                            <div class="invalid-feedback">
+                                Please write a Team
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-outline-success btn-block ">Actualizar</button>
+                        </div>
+                    </form>
+                    <script>
+                        (function () {
+                            'use strict';
+                            window.addEventListener('load', function () {
+                                var forms = document.getElementsByClassName('needs-validation');
+                                var validation = Array.prototype.filter.call(forms, function (form) {
+                                    form.addEventListener('submit', function (event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
