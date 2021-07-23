@@ -21,7 +21,7 @@ router.get('/microservicios', renderMicroservicios)
 // Editar microservicios
 router.get('/microservicios/edit/:id', renderEditMicroserviciosForm)
 
-router.put('/microservicios/edit/:id', updateMicroservicios)
+router.put('/microservicios/edit-microservicios/:id', updateMicroservicios)
 
 //Eliminar microservicios
 router.delete('/microservicios/delete/:id', deleteMicroservicios)
