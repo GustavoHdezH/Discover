@@ -1,12 +1,13 @@
 {
-  "name": "Discover",
+  "name": "discover",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src",
     "dev": "nodemon src",
-    "db": "nodemon src/models/index"
+    "db": "nodemon src/models/index",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "author": "",
